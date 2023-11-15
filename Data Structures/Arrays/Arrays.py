@@ -1,0 +1,218 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+class AshuList:
+    
+    def __init__(self, size):
+        import random
+        self.data = []
+        for index in range(size):
+            self.data.append(None)
+            
+    def get_actual_length(self):
+        count = 0
+        for i in range(len(self.data)):
+            if self.data[i] is not None:
+                count+=1
+            else:
+                break
+        
+        return count
+    def traverse(self, jump=0):
+        '''
+        Returns the updated traversed list with the jumps specified.
+
+        Parameters:
+                jump (int): Jump indexes during traversal
+
+        Returns:
+                new_list (List): List of traversed list elements
+        '''
+        counter = 0
+        new_list = []
+        for index in range(len(self.data)):
+            counter += 1
+            if counter > jump:
+                new_list.append(self.data[index])
+                counter=0
+        
+        return new_list
+    
+    def insert(self, index, value, shift=True):
+        '''
+        Returns the updated traversed list with added elements.
+
+        Parameters:
+                index (int): Index where you want to insert the value
+                value (int): Value which you want to insert
+                shift (bool): If index contains a value then shift all elements or not.
+
+        Returns:
+                new_list (List): List of traversed list elements
+        '''
+        
+        actual_length = self.get_actual_length()
+        
+        # Check if there is space to insert
+        if None not in self.data:
+            return "No Place to insert/shift"
+        
+        # When inserting at location far from last inserted.
+        if index > actual_length:
+            self.data[actual_length] = value
+            return self.data
+        
+        #Inserting at None
+        if self.data[index] is None:
+            self.data[index] = value
+            return self.data
+        else:
+            #Inserting at Not None
+            # When shifting is enabled
+            shift_start_point=actual_length-1
+            if shift==True:
+                if self.data[index] is not None:
+                     while shift_start_point>=index:                            
+                            self.data[shift_start_point], self.data[shift_start_point+1] =                             self.data[shift_start_point-1], self.data[shift_start_point]
+                            shift_start_point-=1
+
+                self.data[index]=value
+            else:
+            # When shifting is disabled
+                self.data[actual_length]=self.data[index]
+                self.data[index]=value
+            
+            return self.data
+    
+    def delete(self, index, shift=True):
+        '''
+        Returns the updated traversed list with deleted elements.
+
+        Parameters:
+                index (int): Index where you want to insert the value
+                shift (bool): If index contains a value then shift all elements or not.
+
+        Returns:
+                new_list (List): List of traversed list elements
+        '''
+        
+        actual_length = self.get_actual_length()
+        
+        #Deleting at not None
+        if self.data[index] is None:
+            del self.data[index]
+            return self.data
+        else:
+            # Deleting at Not None
+            # When shifting is enabled
+            shift_start_point=index
+            shift_stop_point=actual_length
+            if shift==True:
+                if self.data[index] is not None:
+                     while shift_start_point>=actual_length:                            
+                            self.data[shift_start_point-1], self.data[shift_start_point] =                             self.data[shift_start_point], self.data[shift_start_point+1]
+                            shift_start_point+=1
+
+                del self.data[index]
+            else:
+            # When shifting is disabled
+                self.data[actual_length]=self.data[index]
+                del self.data[index]
+            
+            return self.data
+
+
+# In[2]:
+
+
+my_list = AshuList(10)
+
+
+# In[3]:
+
+
+print(my_list.data)
+
+
+# In[4]:
+
+
+new_list = my_list.traverse(2)
+print(new_list)
+
+
+# In[5]:
+
+
+new_list = my_list.insert(0, 23)
+print(new_list)
+new_list = my_list.insert(1, 12)
+print(new_list)
+new_list = my_list.insert(2, 42)
+print(new_list)
+
+
+# In[6]:
+
+
+new_list = my_list.insert(2, 57)
+print(new_list)
+
+
+# In[7]:
+
+
+new_list = my_list.insert(1, 87)
+print(new_list)
+
+
+# In[8]:
+
+
+new_list = my_list.insert(2, 71, shift=False)
+print(new_list)
+
+
+# In[9]:
+
+
+new_list = my_list.insert(9, 13)
+print(new_list)
+
+
+# In[10]:
+
+
+new_list = my_list.delete(9)
+print(new_list)
+
+
+# In[11]:
+
+
+new_list = my_list.delete(5)
+print(new_list)
+
+
+# In[12]:
+
+
+new_list = my_list.delete(3)
+print(new_list)
+
+
+# In[13]:
+
+
+new_list = my_list.delete(1)
+print(new_list)
+
+
+# In[ ]:
+
+
+
+

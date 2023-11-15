@@ -1,0 +1,9 @@
+/Data Structures/Arrays/.ipynb_checkpoints/
+/.ipynb_checkpoints/
+/Algorithms/.ipynb_checkpoints/
+.idea
+*/.DS_Store
+venv
+log
+.DS_Store
+*ipynb_checkpoints
