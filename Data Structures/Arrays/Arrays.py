@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[13]:
 
 
 class AshuList:
@@ -75,8 +75,12 @@ class AshuList:
             shift_start_point=actual_length-1
             if shift==True:
                 if self.data[index] is not None:
-                     while shift_start_point>=index:                            
-                            self.data[shift_start_point], self.data[shift_start_point+1] =                             self.data[shift_start_point-1], self.data[shift_start_point]
+                     while shift_start_point>=index:
+                            """Old Swapping code"""
+#                             self.data[shift_start_point], self.data[shift_start_point+1] = \
+#                             self.data[shift_start_point-1], self.data[shift_start_point]
+                            """Optimized Code"""
+                            self.data[shift_start_point+1] = self.data[shift_start_point]
                             shift_start_point-=1
 
                 self.data[index]=value
@@ -112,8 +116,12 @@ class AshuList:
             shift_stop_point=actual_length
             if shift==True:
                 if self.data[index] is not None:
-                     while shift_start_point>=actual_length:                            
-                            self.data[shift_start_point-1], self.data[shift_start_point] =                             self.data[shift_start_point], self.data[shift_start_point+1]
+                     while shift_start_point>=actual_length:
+                            """Old Swapping code"""
+#                             self.data[shift_start_point-1], self.data[shift_start_point] = \
+#                             self.data[shift_start_point], self.data[shift_start_point+1]
+                            """Optimized code"""
+                            self.data[shift_start_point-1] = self.data[shift_start_point] 
                             shift_start_point+=1
 
                 del self.data[index]
@@ -125,26 +133,26 @@ class AshuList:
             return self.data
 
 
-# In[2]:
+# In[14]:
 
 
 my_list = AshuList(10)
 
 
-# In[3]:
+# In[15]:
 
 
 print(my_list.data)
 
 
-# In[4]:
+# In[16]:
 
 
 new_list = my_list.traverse(2)
 print(new_list)
 
 
-# In[5]:
+# In[17]:
 
 
 new_list = my_list.insert(0, 23)
@@ -155,56 +163,56 @@ new_list = my_list.insert(2, 42)
 print(new_list)
 
 
-# In[6]:
+# In[18]:
 
 
 new_list = my_list.insert(2, 57)
 print(new_list)
 
 
-# In[7]:
+# In[19]:
 
 
 new_list = my_list.insert(1, 87)
 print(new_list)
 
 
-# In[8]:
+# In[20]:
 
 
 new_list = my_list.insert(2, 71, shift=False)
 print(new_list)
 
 
-# In[9]:
+# In[21]:
 
 
 new_list = my_list.insert(9, 13)
 print(new_list)
 
 
-# In[10]:
+# In[22]:
 
 
 new_list = my_list.delete(9)
 print(new_list)
 
 
-# In[11]:
+# In[23]:
 
 
 new_list = my_list.delete(5)
 print(new_list)
 
 
-# In[12]:
+# In[24]:
 
 
 new_list = my_list.delete(3)
 print(new_list)
 
 
-# In[13]:
+# In[25]:
 
 
 new_list = my_list.delete(1)
