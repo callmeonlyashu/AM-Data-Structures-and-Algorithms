@@ -13,6 +13,14 @@ class AshuList:
             self.data.append(None)
             
     def get_actual_length(self):
+        """
+        Returns the actual length of an array.
+
+        Parameters:
+
+        Returns:
+                count (int): Count of list elements
+        """
         count = 0
         for i in range(len(self.data)):
             if self.data[i] is not None:
@@ -22,7 +30,7 @@ class AshuList:
         
         return count
     def traverse(self, jump=0):
-        '''
+        """
         Returns the updated traversed list with the jumps specified.
 
         Parameters:
@@ -30,7 +38,7 @@ class AshuList:
 
         Returns:
                 new_list (List): List of traversed list elements
-        '''
+        """
         counter = 0
         new_list = []
         for index in range(len(self.data)):
@@ -42,7 +50,7 @@ class AshuList:
         return new_list
     
     def insert(self, index, value, shift=True):
-        '''
+        """
         Returns the updated traversed list with added elements.
 
         Parameters:
@@ -52,7 +60,7 @@ class AshuList:
 
         Returns:
                 new_list (List): List of traversed list elements
-        '''
+        """
         
         actual_length = self.get_actual_length()
         
@@ -92,7 +100,7 @@ class AshuList:
             return self.data
     
     def delete(self, index, shift=True):
-        '''
+        """
         Returns the updated traversed list with deleted elements.
 
         Parameters:
@@ -101,7 +109,7 @@ class AshuList:
 
         Returns:
                 new_list (List): List of traversed list elements
-        '''
+        """
         
         actual_length = self.get_actual_length()
         
