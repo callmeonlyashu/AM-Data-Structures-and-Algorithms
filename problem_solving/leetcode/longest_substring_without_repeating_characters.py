@@ -50,7 +50,6 @@ class Solution:
                     break
 
         result_dict = {sub: len(sub) for sub in result_list}
-        print(result_dict)
         output = max(result_dict.values())
         return output
 
