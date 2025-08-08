@@ -6,6 +6,8 @@ This is **not** an open-source collaboration project — it’s my self-study sp
 ---
 
 ## 📂 Repository Structure
+
+```
 AM-Data-Structures-and-Algorithms/
 │
 ├── algorithms/          # Sorting, searching, recursion, dynamic programming
@@ -16,7 +18,7 @@ AM-Data-Structures-and-Algorithms/
 ├── tests/               # Unit tests for verification
 └── README.md            # Project documentation
 
----
+```
 
 ## 🚀 Purpose
 
