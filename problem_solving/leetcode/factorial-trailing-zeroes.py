@@ -28,3 +28,20 @@ class Solution:
             i -= 1
 
         return count
+
+
+# Solution 2: 
+# Count number of factors of 5 in number
+
+class Solution:
+    def trailingZeroes(self, n: int) -> int:
+        if n < 5:
+            return 0
+
+        res = 0
+        while n >= 5:
+            res += int(n/5)
+            n = int(n/5)
+
+        return res
+
