@@ -24,3 +24,27 @@ class Solution:
         return total_water
         
 
+# Approach 2: Optimized approach (track min left and min right for each index and then calculate the water)
+class Solution:
+    def trap(self, height: List[int]) -> int:
+
+        n = len(height)
+        
+        max_left = [0]*n
+        for i in range(1, n):
+            max_left[i] = max(height[i-1], max_left[i-1])
+        
+        max_right = [0]*n
+        for i in range(n-2, -1, -1):
+            max_right[i] = max(height[i+1], max_right[i+1])
+
+        total = 0
+        for i in range(n):
+            curr_water = min(max_left[i], max_right[i]) - height[i]
+            if curr_water > 0:
+                total += curr_water
+        
+        return total
+
+
+
