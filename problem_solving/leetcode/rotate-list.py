@@ -34,7 +34,7 @@ class Solution:
         # Remove the elements from the index of rotation
         while node:
             if count == rotate_index:
-                rot_node = deepcopy(node.next)
+                rot_node = node.next
                 node.next = None
                 break
 
