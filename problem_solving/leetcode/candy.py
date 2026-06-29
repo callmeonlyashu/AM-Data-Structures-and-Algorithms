@@ -11,33 +11,23 @@ class Solution:
             return sum(candies)
 
         for i in range(n):
-            # For first element, check right only
-            if i == 0:
-                if ratings[i] > ratings[i+1]:
-                    candies[i] = candies[i+1] + 1
-
-            # For last element, check left only
-            elif i == n-1:
-                if ratings[i] > ratings[i-1]:
+            # First check left
+            if i-1 >= 0:
+                if ratings[i-1] < ratings[i]:
                     candies[i] = candies[i-1] + 1
+            
+            # Then go right until you find rating larger than current
+            counter = 1
+            j = i             
+            while j+1 < n and ratings[j] > ratings[j+1]:
+                counter += 1
+                j += 1
+            
+            candies[i] = max(candies[i], counter)
 
-            # For element in middle, first check max of left and right
-            else:
-                if ratings[i] > ratings[i-1]:
-                    candies[i] = candies[i-1] + 1
-                
-                if ratings[i] > ratings[i+1]:
-                    if candies[i] < candies[i+1] + 1:
-                        candies[i] = candies[i+1] + 1
-
-                # Sync all the previous elements to increase the candies if neighbours updated.
-                j = i
-                while j > 0:
-                    if ratings[j] < ratings[j-1]:
-                        candies[j-1] = max(candies[j-1], candies[j] + 1)
-                    j -= 1
-        
         return sum(candies)
+
+
 
 
 
