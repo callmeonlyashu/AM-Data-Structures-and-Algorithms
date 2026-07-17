@@ -1,5 +1,41 @@
 """Link: https://leetcode.com/problems/binary-tree-maximum-path-sum/"""
 
+# Much easier implementation
+# Explanation: https://leetcode.com/problems/binary-tree-maximum-path-sum/?envType=study-plan-v2&envId=top-interview-150
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        max_sum = float('-inf')
+        def dfs(node):     
+            nonlocal max_sum       
+            # base case
+            if not node:
+                return 0
+            
+            # recursing through left and right subtree
+            left_max = dfs(node.left)
+            right_max = dfs(node.right)
+
+            # finding all the four paths and the maximum between all of them
+            max_right_left = max(left_max, right_max)
+            max_one_node_root = max(node.val, (node.val + max_right_left))
+            max_all = max(max_one_node_root, left_max + right_max + node.val)
+
+            # Storing the result in the maxSum holder
+            max_sum = max(max_sum, max_all)
+
+            # returning the value if root was part of the answer
+            return max_one_node_root
+
+        dfs(root)
+        return max_sum
+
+
 # Working approach:
 
 # Definition for a binary tree node.
